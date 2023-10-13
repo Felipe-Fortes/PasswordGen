@@ -38,7 +38,7 @@ if upper:
     all += uppercase
 if lower:
     all += lowercase
-if numq:
+if num:
     all += numbers
 if espec:
     all += especial
