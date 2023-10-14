@@ -109,7 +109,6 @@ cascateamount = customtkinter.CTkOptionMenu(master=frame, values=["0","1","2","3
 cascateamount.pack(pady=12, padx=10)
     
 button = customtkinter.CTkButton(master=frame, text="Gerar Senhas", command=generate, state="disabled")
-
 button.pack(pady=12, padx=10)
 
 root.after(100, checkbutton)
