@@ -46,7 +46,7 @@ def lenghtdef():
     global lenghtq
 
 root = customtkinter.CTk()
-root.geometry("500x600")
+root.geometry("600x750")
 
 def generate():
     all =""
@@ -62,9 +62,15 @@ def generate():
     lenght = int(cascatelenght.get())
     amount = int(cascateamount.get())
 
+    passwords = []
     for x in range(amount):
         password = "".join(random.sample(all, lenght))
-        print(password)
+        passwords.append(password)
+    
+    textbox.delete("1.0","end")
+
+    for password in passwords:
+        textbox.insert("end", password + "\n")
 
 def checkbutton():
     if cascatelenght.get() == "0" or cascateamount.get() == "0":
@@ -110,6 +116,9 @@ cascateamount.pack(pady=12, padx=10)
     
 button = customtkinter.CTkButton(master=frame, text="Gerar Senhas", command=generate, state="disabled")
 button.pack(pady=12, padx=10)
+
+textbox = customtkinter.CTkTextbox(master=frame, height=200, width=200, font=("", 20))
+textbox.pack(pady=12, padx=10)
 
 root.after(100, checkbutton)
 root.mainloop()
