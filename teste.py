@@ -14,7 +14,6 @@ lowerq = False
 numsq = False
 especq = False
 
-
 def upperdef():
     global upperq
     if checkboxupper.get() == 1:
@@ -43,10 +42,13 @@ def especdef():
     else:
         especq = False
 
-root = customtkinter.CTk()
-root.geometry("400x500")
+def lenghtdef():
+    global lenghtq
 
-def gerar():
+root = customtkinter.CTk()
+root.geometry("500x600")
+
+def generate():
     all =""
     if upperq:
         all += uppercase
@@ -58,6 +60,14 @@ def gerar():
         all += especial
 
     print(all)
+
+def checkbutton():
+    if cascatelenght.get() == "0" or cascateamount.get() == "0":
+        button.configure(state="disabled")
+
+    else:
+        button.configure(state="normal")
+    root.after(100,checkbutton)
 
 frame = customtkinter.CTkFrame(master=root)
 frame.pack(pady=20, padx=60, fill="both", expand=True)
@@ -77,14 +87,21 @@ checkboxnums.pack(pady=12, padx=10)
 checkboxespec = customtkinter.CTkCheckBox(master=frame, text="Caracteres Especiais", command = especdef)
 checkboxespec.pack(pady=12, padx=10)
 
-cascatelenght = customtkinter.CTkOptionMenu(master=frame, values=["Tamanho Das Senhas","1"])
+labellennght = customtkinter.CTkLabel(master=frame, text="Tamanho Da Senha")
+labellennght.pack(pady=12, padx=10)
+
+cascatelenght = customtkinter.CTkOptionMenu(master=frame, values=["0","1","2","3","4","5"])
 cascatelenght.pack(pady=12, padx=10)
 
+labelamount = customtkinter.CTkLabel(master=frame, text="Quantas Senhas Devem Ser Geradas?")
+labelamount.pack(pady=12, padx=10)
 
-cascateamount = customtkinter.CTkOptionMenu(master=frame, values=["Quantas Senhas Serao Geradas","1"])
+cascateamount = customtkinter.CTkOptionMenu(master=frame, values=["0","1","2","3","4","5"])
 cascateamount.pack(pady=12, padx=10)
+    
+button = customtkinter.CTkButton(master=frame, text="Gerar Senhas", command=generate, state="disabled")
 
-button = customtkinter.CTkButton(master=frame, text="Gerar Senhas", command=gerar)
 button.pack(pady=12, padx=10)
 
+root.after(100, checkbutton)
 root.mainloop()
