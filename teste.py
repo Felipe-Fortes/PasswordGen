@@ -1,7 +1,13 @@
 import customtkinter
+import random
 
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("green")
+
+uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+lowercase = "abcdefghijklmnopqrstuvwxyz"
+numbers = "1234567890"
+especial = "!@#%&*()+={}[]?/:;><.,-_"
 
 upperq = False
 lowerq = False
@@ -43,13 +49,13 @@ root.geometry("400x500")
 def gerar():
     all =""
     if upperq:
-        all += " Letras Maiusculas"
+        all += uppercase
     if lowerq:
-        all += " Letras Minusculas"
+        all += lowercase
     if numsq:
-        all += " Numeros"
+        all += numbers
     if especq:
-        all += " Caracteres Especiais"
+        all += especial
 
     print(all)
 

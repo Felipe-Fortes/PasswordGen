@@ -43,6 +43,8 @@ if num:
 if espec:
     all += especial
 
+print (all)
+
 lenght = int(input("Tamanho Da Senha?: "))
 amount = int(input("Quantas Senhas Serao Geradas?: "))
 
