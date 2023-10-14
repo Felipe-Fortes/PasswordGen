@@ -45,9 +45,9 @@ if espec:
 
 print (all)
 
-lenght = int(input("Tamanho Da Senha?: "))
+length = int(input("Tamanho Da Senha?: "))
 amount = int(input("Quantas Senhas Serao Geradas?: "))
 
 for x in range(amount):
-    password = "".join(random.sample(all, lenght))
+    password = "".join(random.sample(all, length))
     print(password)
