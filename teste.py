@@ -73,12 +73,7 @@ def generate():
         textbox.insert("end", password + "\n")
 
 def checkbutton():
-    if cascatelenght.get() == "0" or cascateamount.get() == "0":
-        button.configure(state="disabled")
-    else:
-        button.configure(state="normal")
-
-    if upperq == False and lowerq == False and numsq == False and especq == False:
+    if upperq == False and lowerq == False and numsq == False and especq == False or cascatelenght.get() == "0" or cascateamount.get() == "0":
         button.configure(state="disabled")
     else:
         button.configure(state="normal")
