@@ -14,6 +14,7 @@ lowerq = False
 numsq = False
 especq = False
 
+#funçoes
 def upperdef():
     global upperq
     if checkboxupper.get() == 1:
@@ -79,6 +80,7 @@ def checkbutton():
         button.configure(state="normal")
     root.after(100,checkbutton)
 
+#visual
 frame = customtkinter.CTkFrame(master=root)
 frame.pack(pady=20, padx=60, fill="both", expand=True)
 
