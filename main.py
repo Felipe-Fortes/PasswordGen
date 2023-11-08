@@ -1,53 +1,124 @@
+import customtkinter
 import random
+
+customtkinter.FontManager.load_font("Torus Notched SemiBold.ttf")
+customtkinter.FontManager.load_font("Akira-Expanded-Demo.ttf")
+
+customtkinter.set_appearance_mode("dark")
+customtkinter.set_default_color_theme("green")
 
 uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 lowercase = "abcdefghijklmnopqrstuvwxyz"
 numbers = "1234567890"
 especial = "!@#%&*()+={}[]?/:;><.,-_"
 
-upperq = input ("Letras Maisculas?(S/N): ")
-lowerq = input ("Letras Minusculas?(S/N): ")
-numq = input ("Numeros?(S/N): ")
-especq = input ("Caracteres Especiais?(S/N): ")
+upperq = False
+lowerq = False
+numsq = False
+especq = False
 
-afirmativo = ["Sim","SIM","S","sim","s"]
+#funçoes
+def upperdef():
+    global upperq
+    if checkboxupper.get() == 1:
+        upperq = True
+    else:
+        upperq = False
 
-if upperq in afirmativo:
-    upper = True
-else:
-    upper = False 
+def lowerdef():
+    global lowerq
+    if checkboxlower.get() == 1:
+        lowerq = True
+    else:
+        lowerq = False
 
-if lowerq in afirmativo:
-    lower = True
-else:
-    lower = False 
+def numsdef():
+    global numsq
+    if checkboxnums.get() == 1:
+        numsq = True
+    else:
+        numsq = False
 
-if numq in afirmativo:
-    num = True
-else:
-    num = False 
+def especdef():
+    global especq
+    if checkboxespec.get() == 1:
+        especq = True
+    else:
+        especq = False
 
-if especq in afirmativo:
-    espec = True
-else:
-    espec = False 
+def lenghtdef():
+    global lenghtq
 
-all = ""
+root = customtkinter.CTk()
+root.geometry("600x750")
 
-if upper:
-    all += uppercase
-if lower:
-    all += lowercase
-if num:
-    all += numbers
-if espec:
-    all += especial
+def generate():
+    all =""
+    if upperq:
+        all += uppercase
+    if lowerq:
+        all += lowercase
+    if numsq:
+        all += numbers
+    if especq:
+        all += especial
 
-print (all)
+    lenght = int(cascatelenght.get())
+    amount = int(cascateamount.get())
 
-length = int(input("Tamanho Da Senha?: "))
-amount = int(input("Quantas Senhas Serao Geradas?: "))
+    passwords = []
+    for x in range(amount):
+        password = "".join(random.sample(all, lenght))
+        passwords.append(password)
+    
+    textbox.delete("1.0","end")
 
-for x in range(amount):
-    password = "".join(random.sample(all, length))
-    print(password)
+    for password in passwords:
+        textbox.insert("end", password + "\n")
+
+def checkbutton():
+    if upperq == False and lowerq == False and numsq == False and especq == False or cascatelenght.get() == "0" or cascateamount.get() == "0":
+        button.configure(state="disabled")
+    else:
+        button.configure(state="normal")
+    root.after(100,checkbutton)
+
+#visual
+frame = customtkinter.CTkFrame(master=root)
+frame.pack(pady=20, padx=25, fill="both", expand=True)
+
+label = customtkinter.CTkLabel(master=frame, text="Gerador De Senhas", font=("AkiraExpanded-SuperBold", 30))
+label.pack(pady=12, padx=10)
+
+checkboxupper = customtkinter.CTkCheckBox(master=frame, text="Letras Maiusculas     ", command = upperdef)
+checkboxupper.pack(pady=10, padx=10)
+
+checkboxlower = customtkinter.CTkCheckBox(master=frame, text="Letras Minusculas     ", command = lowerdef)
+checkboxlower.pack(pady=10, padx=10)
+
+checkboxnums = customtkinter.CTkCheckBox(master=frame, text="Numeros                      ", command = numsdef)
+checkboxnums.pack(pady=10, padx=10)
+
+checkboxespec = customtkinter.CTkCheckBox(master=frame, text="Caracteres Especiais", command = especdef)
+checkboxespec.pack(pady=10, padx=10)
+
+labellennght = customtkinter.CTkLabel(master=frame, text="Tamanho Da Senha")
+labellennght.pack(pady=12, padx=10)
+
+cascatelenght = customtkinter.CTkOptionMenu(master=frame, values=["0","1","2","3","4","5","6","7","8","9","10"])
+cascatelenght.pack(pady=12, padx=10)
+
+labelamount = customtkinter.CTkLabel(master=frame, text="Quantas Senhas Devem Ser Geradas?")
+labelamount.pack(pady=12, padx=10)
+
+cascateamount = customtkinter.CTkOptionMenu(master=frame, values=["0","1","2","3","4","5"])
+cascateamount.pack(pady=12, padx=10)
+    
+button = customtkinter.CTkButton(master=frame, text="Gerar Senhas", command=generate, state="disabled")
+button.pack(pady=12, padx=10)
+
+textbox = customtkinter.CTkTextbox(master=frame, height=200, width=200, font=("", 20))
+textbox.pack(pady=12, padx=10)
+
+root.after(100, checkbutton)
+root.mainloop()
