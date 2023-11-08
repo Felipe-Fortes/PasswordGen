@@ -102,19 +102,19 @@ checkboxnums.pack(pady=10, padx=10)
 checkboxespec = customtkinter.CTkCheckBox(master=frame, text="Caracteres Especiais", command = especdef)
 checkboxespec.pack(pady=10, padx=10)
 
-labellennght = customtkinter.CTkLabel(master=frame, text="Tamanho Da Senha")
+labellennght = customtkinter.CTkLabel(master=frame, text="TAMANHO DAS SENHAS", font=("Torus Notched SemiBold", 16))
 labellennght.pack(pady=12, padx=10)
 
 cascatelenght = customtkinter.CTkOptionMenu(master=frame, values=["0","1","2","3","4","5","6","7","8","9","10"])
 cascatelenght.pack(pady=12, padx=10)
 
-labelamount = customtkinter.CTkLabel(master=frame, text="Quantas Senhas Devem Ser Geradas?")
+labelamount = customtkinter.CTkLabel(master=frame, text="QUANTAS SENHAS DEVEM SER GERADAS?", font=("Torus Notched SemiBold", 16))
 labelamount.pack(pady=12, padx=10)
 
 cascateamount = customtkinter.CTkOptionMenu(master=frame, values=["0","1","2","3","4","5"])
 cascateamount.pack(pady=12, padx=10)
     
-button = customtkinter.CTkButton(master=frame, text="Gerar Senhas", command=generate, state="disabled")
+button = customtkinter.CTkButton(master=frame, text="GERAR SENHAS", command=generate, state="disabled")
 button.pack(pady=12, padx=10)
 
 textbox = customtkinter.CTkTextbox(master=frame, height=200, width=200, font=("", 20))
